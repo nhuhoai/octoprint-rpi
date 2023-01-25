@@ -111,6 +111,10 @@
     ```bash
     sudo usermod -a -G video octoprint
     ```
+-   Allow sudo commands for ```/opt/octoprint/scripts``` for ```octoprint```
+    ```bash
+    echo "octoprint ALL=NOPASSWD: /opt/octoprint/scripts/*.sh" | sudo tee -a /etc/sudoers > /dev/null
+    ```
 
 # Install Octoprint with ```octoprint``` account
 
