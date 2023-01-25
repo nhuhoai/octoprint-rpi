@@ -35,6 +35,6 @@ source /opt/octoprint/.venv/bin/activate
 pip install pip --upgrade
 pip install octoprint
 "
-cp ./octoprint.service /etc/systemd/system/octoprint.service
+cp /opt/octoprint/octoprint.service /etc/systemd/system/octoprint.service
 systemctl enable octoprint
 systemctl start octoprint
