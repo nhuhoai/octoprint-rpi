@@ -22,6 +22,7 @@ apt install -y build-essential \
                python3-venv
 useradd -m -d /opt/octoprint octoprint
 usermod -a -G dialout octoprint
+usermod -a -G video octoprint
 echo "octoprint ALL=NOPASSWD: /opt/octoprint/scripts/*.sh" | tee -a /etc/sudoers > /dev/null
 su octoprint -c "
 cd /opt/octoprint
@@ -34,6 +35,6 @@ source /opt/octoprint/.venv/bin/activate
 pip install pip --upgrade
 pip install octoprint
 "
-cp ./octoprint.service /etc/systemd/system/octoprint.service
+cp /opt/octoprint/octoprint.service /etc/systemd/system/octoprint.service
 systemctl enable octoprint
 systemctl start octoprint
