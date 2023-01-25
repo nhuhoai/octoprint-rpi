@@ -23,14 +23,17 @@ apt install -y build-essential \
 useradd -m -d /opt/octoprint octoprint
 usermod -a -G dialout octoprint
 echo "octoprint ALL=NOPASSWD: /opt/octoprint/scripts/*.sh" | tee -a /etc/sudoers > /dev/null
-cd /opt/octoprint
-git clone https://github.com/nhuhoai/octoprint-rpi.git .
-cp ./octoprint.service /etc/systemd/system/octoprint.service
 su octoprint -c "
 cd /opt/octoprint
+git init .
+git remote add origin https://github.com/nhuhoai/octoprint-rpi.git
+git fetch
+git checkout -t origin/main
 python3 -m venv .venv
 source /opt/octoprint/.venv/bin/activate
 pip install pip --upgrade
 pip install octoprint
 "
+cp ./octoprint.service /etc/systemd/system/octoprint.service
 systemctl enable octoprint
+systemctl start octoprint
